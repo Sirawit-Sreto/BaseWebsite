@@ -1,20 +1,36 @@
 {
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js"
+    "dev:client": "vite",
+    "dev:server": "nodemon server.js",
+    "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.9",
-    "@mui/styled-engine-sc": "^7.3.9",
-    "debug-tracker-vscode": "^0.0.15",
+    "@neondatabase/serverless": "^1.0.2",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.0",
     "express": "^5.2.1",
-    "mongoose": "^9.3.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
     "nodemon": "^3.1.14",
-    "pg": "^8.20.0",
-    "react-is": "^18.3.1",
-    "styled-components": "^6.3.12"
-  }
+    "vite": "^8.0.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
