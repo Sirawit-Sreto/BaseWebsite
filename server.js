@@ -12,6 +12,14 @@ const defaultDatabaseUrl = 'postgresql://neondb_owner:npg_lCRm2rPF8fnO@ep-sparkl
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (_request, response) => {
+  response.json({
+    ok: true,
+    message: 'API server is running',
+    endpoints: ['/api/health', '/api/profiles'],
+  });
+});
+
 app.get('/api/health', (_request, response) => {
   response.json({ ok: true });
 });
