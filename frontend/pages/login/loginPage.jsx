@@ -3,6 +3,36 @@ import { useNavigate } from 'react-router-dom';
 import '../../App.css';
 import './loginPage.css';
 
+const sleep = (ms) => new Promise((resolve) => {
+  window.setTimeout(resolve, ms);
+});
+
+async function waitForBackendReady(maxAttempts = 20, delayMs = 1500) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      const healthResponse = await fetch('/api/health', { cache: 'no-store' });
+
+      if (!healthResponse.ok) {
+        throw new Error('Backend health endpoint is not ready');
+      }
+
+      const databaseResponse = await fetch('/api/profiles', { cache: 'no-store' });
+
+      if (!databaseResponse.ok) {
+        throw new Error('Database is not ready yet');
+      }
+
+      return;
+    } catch (error) {
+      if (attempt === maxAttempts) {
+        throw error;
+      }
+
+      await sleep(delayMs);
+    }
+  }
+}
+
 function LoginPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -46,7 +76,10 @@ function LoginPage() {
       localStorage.setItem('authToken', data.token);
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('userEmail', data.user.email);
-      
+
+      setError('กำลังรอ database พร้อมใช้งาน...');
+      await waitForBackendReady();
+
       navigate('/app');
     } catch (loginError) {
       setError(loginError.message || 'Unable to login');
