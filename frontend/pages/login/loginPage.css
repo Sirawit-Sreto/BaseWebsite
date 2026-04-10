@@ -1,0 +1,107 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(237, 208, 220, 0.34), transparent 38%),
+    radial-gradient(circle at 88% 18%, rgba(157, 191, 226, 0.24), transparent 34%),
+    linear-gradient(180deg, #fcd4ab 0%, var(--background-default) 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid rgba(126, 110, 98, 0.14);
+  border-radius: 14px;
+  background: var(--background-paper);
+  box-shadow: 0 20px 38px -28px rgba(116, 101, 91, 0.3);
+}
+
+.login-title {
+  margin: 0 0 18px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.login-field {
+  margin-bottom: 14px;
+}
+
+.login-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.login-field input {
+  width: 88%;
+  margin: auto;
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid #d7d0ca;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: #fffdfa;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-field input:focus {
+  border-color: #9b5050;
+  box-shadow: 0 0 0 3px rgba(155, 80, 80, 0.18);
+}
+
+.login-error {
+  margin-bottom: 12px;
+  padding: 10px 0px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 0, 0, 0.28);
+  background: rgba(255, 0, 0, 0.08);
+  color: #8f1d1d;
+  font-size: 0.9rem;
+}
+
+.login-button {
+  width: 102%;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #9b5050 0%, #903232 100%);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+}
+
+.login-button:hover:not(:disabled) {
+  box-shadow: 0 6px 14px rgba(121, 105, 95, 0.15);
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 14px;
+  }
+
+  .login-card {
+    padding: 20px;
+  }
+
+  .login-field input {
+    width: 100%;
+    margin-left: 0;
+  }
+}

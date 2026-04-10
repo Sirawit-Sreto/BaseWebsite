@@ -1,0 +1,168 @@
+/* จัดการ Layout หลักของแอป */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  /* Material UI background.default */
+}
+
+.neon-page {
+  min-height: 100vh;
+  padding: 32px 0;
+  background:
+    radial-gradient(circle at top left, rgba(217, 155, 177, 0.2), transparent 34%),
+    radial-gradient(circle at top right, rgba(157, 191, 226, 0.2), transparent 30%),
+    linear-gradient(180deg, #fdfaf8 0%, #f7f4f1 100%);
+}
+
+.neon-shell {
+  border: 1px solid rgba(126, 110, 98, 0.14);
+  box-shadow: 0 20px 38px -28px rgba(116, 101, 91, 0.3);
+}
+
+/* ส่วนของเนื้อหาหลักที่อยู่ข้าง Sidebar */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* ตกแต่งสีสันธีมงานแต่งงาน - Material UI Palette */
+:root {
+  --primary-color: #f30055;
+  /* Material UI primary.main */
+  --primary-hover: #da5d8d;
+  /* Material UI primary.dark */
+  --primary-light: #edd0dc;
+  /* Material UI primary.light */
+  --secondary-color: #9fb3c8;
+  /* Material UI secondary.main */
+  --secondary-hover: #7f97af;
+  /* Material UI secondary.dark */
+  --success-color: #8fc9ae;
+  /* Material UI success.main */
+  --error-color: #ff0000;
+  /* Material UI error.main */
+  --warning-color: #ff0000;
+  /* Material UI warning.main */
+  --info-color: #9dbfe2;
+  /* Material UI info.main */
+  --background-default: #faf8f6;
+  /* Material UI background.default */
+  --background-paper: #ffffff;
+  /* Material UI background.paper */
+  --text-primary: #000000;
+  /* Material UI text.primary */
+  --text-secondary: #000000;
+  /* Material UI text.secondary */
+  --divider-color: #000000;
+  /* Material UI divider */
+}
+
+/* ปรับแต่งฟอร์ม Login/Register ให้ดูนุ่มนวล */
+.auth-card {
+  background: var(--background-paper);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Transition สำหรับปุ่ม */
+Button {
+  transition: all 0.2s ease-in-out;
+}
+
+Button:hover {
+  transform: translateY(-1px);
+}
+
+/* ปรับแต่ง Table ให้ Scannable */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 0.75rem 1.5rem;
+  background-color: #eef2f8;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--divider-color);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+/* Hero style inspired by impeccable.style direction */
+.im-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid #ffffff;
+  background: radial-gradient(circle at 18% 20%, #fdecc8 0%, #f9f7f0 35%, #f3f1ea 100%);
+  box-shadow: 0 20px 50px -35px rgba(20, 20, 20, 0.45);
+}
+
+.im-hero__grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(20, 20, 20, 0.08) 0.4px, transparent 0.4px);
+  background-size: 3px 3px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.im-hero__content {
+  position: relative;
+  padding: 2.25rem;
+}
+
+.im-hero__eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.im-hero__title {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.02;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.im-hero__desc {
+  margin: 0.9rem 0 0;
+  max-width: 62ch;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.im-hero__search {
+  margin-top: 1.25rem;
+  border: 1px solid rgba(31, 29, 26, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(2px);
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .im-hero__content {
+    padding: 1.25rem;
+  }
+
+  .im-hero__search {
+    padding: 0.8rem;
+  }
+}
