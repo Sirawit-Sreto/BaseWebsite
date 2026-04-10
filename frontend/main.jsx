@@ -4,6 +4,15 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import App from './App.jsx';
 import LoginPage from './pages/login/loginPage.jsx';
 
+const BOOT_LOGIN_KEY = 'bootLoginChecked';
+
+if (!sessionStorage.getItem(BOOT_LOGIN_KEY)) {
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('userEmail');
+  sessionStorage.setItem(BOOT_LOGIN_KEY, 'true');
+}
+
 function hasActiveSession() {
   return Boolean(localStorage.getItem('authToken') || localStorage.getItem('isLoggedIn') === 'true');
 }
