@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const authSecret = process.env.JWT_SECRET || 'dsfklgj';
+const authSecret = process.env.JWT_SECRET || '@Babeboo1';
 const authExpiresIn = process.env.JWT_EXPIRES_IN || '1h';
 
 function createAuthToken(user) {

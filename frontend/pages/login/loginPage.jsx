@@ -77,7 +77,7 @@ function LoginPage() {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('userEmail', data.user.email);
 
-      setError('กำลังรอ database พร้อมใช้งาน...');
+      setError('  กำลังรอ database พร้อมใช้งาน...');
       await waitForBackendReady();
 
       navigate('/app');

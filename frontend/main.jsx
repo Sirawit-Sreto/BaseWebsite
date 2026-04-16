@@ -98,7 +98,7 @@ function AppBootRoute() {
     <div className="login-page neon-page">
       <div className="login-card neon-shell auth-card">
         <h2 className="login-title">Preparing App</h2>
-        <p style={{ marginTop: 8, marginBottom: 16 }}>
+        <p style={{ marginTop: 8, marginBottom: 200 }}>
           {checking
             ? 'กำลังรอ backend/database พร้อมใช้งาน...'
             : 'ระบบยังไม่พร้อมใช้งาน'}

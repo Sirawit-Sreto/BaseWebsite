@@ -30,6 +30,7 @@ import {
   ThemeProvider,
   Typography,
 } from '@mui/material';
+import * as XLSX from 'xlsx';
 import theme from './theme';
 import './App.css';
 
@@ -41,6 +42,7 @@ function App() {
   const [successMessage, setSuccessMessage] = useState('');
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
   const [logoutSubmitting, setLogoutSubmitting] = useState(false);
+  const [exporting, setExporting] = useState(false);
   const [searchId, setSearchId] = useState('');
   const [editingId, setEditingId] = useState('');
   const [formData, setFormData] = useState({
@@ -242,6 +244,49 @@ function App() {
     }
   };
 
+  const handleExportExcel = () => {
+    if (profiles.length === 0) {
+      setError('ไม่มีข้อมูลสำหรับ Export');
+      return;
+    }
+
+    try {
+      setExporting(true);
+      setError('');
+      setSuccessMessage('');
+
+      const rows = profiles.map((profile) => ({
+        ID: profile.id,
+        Name: `${profile.firstname ?? ''} ${profile.lastname ?? ''}`.trim(),
+        Email: profile.email ?? '',
+        Address: profile.address ?? '',
+        Phone: profile.phone ?? '',
+        Active: profile.isactive ? 'Active' : 'Inactive',
+      }));
+
+      const worksheet = XLSX.utils.json_to_sheet(rows);
+      worksheet['!cols'] = [
+        { wch: 10 },
+        { wch: 28 },
+        { wch: 34 },
+        { wch: 34 },
+        { wch: 20 },
+        { wch: 14 },
+      ];
+
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Accounts');
+
+      const dateLabel = new Date().toISOString().slice(0, 10);
+      XLSX.writeFile(workbook, `neon_accounts_${dateLabel}.xlsx`);
+      setSuccessMessage('Export Excel สำเร็จ');
+    } catch (exportError) {
+      setError(exportError.message || 'Export Excel ไม่สำเร็จ');
+    } finally {
+      setExporting(false);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -349,6 +394,32 @@ function App() {
                             บันทึกลงลงNeonอัตโนมัติเมื่อกดปุ่ม เพิ่มข้อมูล หรือ อัปเดตข้อมูล
                           </Typography>
                         </Box>
+                        <Card
+                          variant="outlined"
+                          component="button"
+                          type="button"
+                          onClick={handleExportExcel}
+                          disabled={loading || exporting || profiles.length === 0}
+                          sx={{
+                            borderRadius: 2,
+                            bgcolor: 'background.paper',
+                            px: 0,
+                            cursor: loading || exporting || profiles.length === 0 ? 'not-allowed' : 'pointer',
+                            opacity: loading || exporting || profiles.length === 0 ? 0.6 : 1,
+                            borderColor: 'divider',
+                            '&:hover': {
+                              borderColor: 'primary.main',
+                              bgcolor: 'action.hover',
+                            },
+                          }}
+                        >
+                          <CardContent sx={{ py: 1, px: 2 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              {exporting ? 'กำลัง Export...' : 'Export Excel'}
+                            </Typography>
+                          </CardContent>
+                        </Card>
+
                       </Stack>
 
                       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} alignItems={{ xs: 'stretch', sm: 'center' }}>
