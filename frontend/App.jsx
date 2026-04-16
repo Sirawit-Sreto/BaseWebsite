@@ -404,6 +404,9 @@ function App() {
                             borderRadius: 2,
                             bgcolor: 'background.paper',
                             px: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                             cursor: loading || exporting || profiles.length === 0 ? 'not-allowed' : 'pointer',
                             opacity: loading || exporting || profiles.length === 0 ? 0.6 : 1,
                             borderColor: 'divider',
@@ -413,8 +416,8 @@ function App() {
                             },
                           }}
                         >
-                          <CardContent sx={{ py: 1, px: 2 }}>
-                            <Typography variant="caption" color="text.secondary">
+                          <CardContent sx={{ py: 3, px: 2, textAlign: 'center' }}>
+                            <Typography variant="caption" color="text.secondary" align="center">
                               {exporting ? 'กำลัง Export...' : 'Export Excel'}
                             </Typography>
                           </CardContent>
